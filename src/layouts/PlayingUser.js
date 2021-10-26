@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { handleChoiceUser } from '../redux/action/ActionGame';
 class PlayingUser extends Component {
 
   renderSelective = () => {
@@ -10,10 +11,7 @@ class PlayingUser extends Component {
           className="col-3 btn btn-info"
           key={index}
           onClick={() => {
-            this.props.dispatch({
-              type: 'CHOICE_USER',
-              img: img
-            })
+            this.props.dispatch(handleChoiceUser(img))
           }}
         >
           <img src={img.url} alt="" width={'50px'} />

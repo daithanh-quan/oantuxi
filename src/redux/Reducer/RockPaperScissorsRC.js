@@ -1,3 +1,5 @@
+import { CHOICE_MACHINE, CHOICE_USER, END_GAME } from "../constant/typeGameAction"
+
 const stateDefault = {
   // điểm chơi
   goal: 0,
@@ -18,23 +20,22 @@ const stateDefault = {
 const RockPaperScissorsRC = (state = stateDefault, action) => {
   switch (action.type) {
     // render ra giao diện các hình ảnh
-    case 'CHOICE_USER': {
+    case CHOICE_USER: {
       // set lại state playerChoose
       state.playerChoose.url = action.img.url
       state.playerChoose.ma = action.img.ma
       return { ...state }
     }
     // tạo random cho máy khi click
-    case 'CHOICE_MACHINE': {
+    case CHOICE_MACHINE: {
       let index = Math.floor(Math.random() * 3)
       state.machine = state.arraySelective[index]
 
       return { ...state }
     }
-    case 'END-GAME': {
+    case END_GAME: {
       state.playingTime += 1
       let player = { ...state.playerChoose }
-      console.log(state.machine.ma);
       let machine = { ...state.machine }
       switch (player.ma) {
         case 'keo': if (machine.ma === 'keo') {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { handleEndGame, handleRandomOfMachine } from '../redux/action/ActionGame';
 class PlayingPoint extends Component {
   render() {
     let { goal, playingTime, result } = this.props
@@ -14,15 +15,11 @@ class PlayingPoint extends Component {
             let account = 0
 
             let randomSelect = setInterval(() => {
-              this.props.dispatch({
-                type: 'CHOICE_MACHINE'
-              })
+              this.props.dispatch(handleRandomOfMachine())
               account++
               if (account > 20) {
                 clearInterval(randomSelect)
-                this.props.dispatch({
-                  type: 'END-GAME'
-                })
+                this.props.dispatch(handleEndGame())
               }
 
             }, 100)
